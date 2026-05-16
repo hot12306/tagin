@@ -19,7 +19,7 @@ print("当前GPU设备:", torch.cuda.get_device_name(0))  # 应显示显卡型�
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--seed', type=int, default=2023, help="random seed of dataset and model")
-parser.add_argument('--dataset_name', type=str, default='bindingdB',
+parser.add_argument('--dataset_name', type=str, default='ttd',
                     choices=['bindingdB', 'ttd', 'drugbank'])
 parser.add_argument('--num_test', type=float, default=0.2, help='ratio of test datasets')
 parser.add_argument('--ratio', type=float, default=1, help='ratio of positive samples and negative samples')
@@ -41,7 +41,7 @@ parser.add_argument('--train_times', type=int, default=10, help='number of train
 parser.add_argument('--train_epoch', type=int, default=1000, help='number of training epoch')
 parser.add_argument('--batch_size', type=int, default=512, help='batch size of dataset')
 parser.add_argument('--use_global', type=bool, default=True)
-parser.add_argument('--use_local', type=bool, default=True)
+parser.add_argument('--use_local', type=bool, default=False)
 
 # 新增参数：是否保存最佳模型的预测结果用于后续整合
 parser.add_argument('--save_best_predictions', type=bool, default=True,
@@ -67,8 +67,8 @@ def print_result(result):
 
 save_root = f"save/{args.dataset_name}"
 os.makedirs(save_root, exist_ok=True)
-file_name = f'{args.dataset_name.upper()}'+'-num_perm-128'+'.csv'
-# file_name = f'{args.dataset_name.upper()}.csv'
+# file_name = f'{args.dataset_name.upper()}'+'-num_perm-128'+'.csv'
+file_name = f'{args.dataset_name.upper()}.csv'
 file_dir = save_root + '/' + file_name
 
 
