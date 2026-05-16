@@ -1,0 +1,5 @@
+{
+  "dataset_name": "drugbank1w",
+  "best_auc": 0.9767,
+  "num_samples": 2954
+}

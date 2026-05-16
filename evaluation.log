@@ -1,0 +1,367 @@
+2025-11-06 10:48:08,763 - INFO - 
+==================================================
+2025-11-06 10:48:08,763 - INFO - 开始评估多个数据集并绘制曲线
+2025-11-06 10:48:08,763 - INFO - ==================================================
+2025-11-06 10:48:08,763 - INFO - 
+处理数据集: TTD
+2025-11-06 10:48:08,763 - INFO - 
+==================================================
+2025-11-06 10:48:08,763 - INFO - 开始评估数据集: TTD
+2025-11-06 10:48:08,763 - INFO - ==================================================
+2025-11-06 10:48:08,763 - INFO - 加载数据集...
+2025-11-06 10:48:15,247 - INFO - 数据集加载成功: 1 个样本
+2025-11-06 10:48:15,247 - INFO - 初始化模型...
+2025-11-06 10:48:15,435 - INFO - 验证模型架构一致性...
+2025-11-06 10:48:15,453 - INFO - 检测到子图特征维度: 128
+2025-11-06 10:48:15,454 - INFO - 检测到隐藏层维度: 256
+2025-11-06 10:48:15,454 - INFO - 检测到门控机制，同时使用了全局和局部特征
+2025-11-06 10:48:15,454 - INFO - 所有关键参数与训练时一致。
+2025-11-06 10:48:15,454 - INFO - 加载模型: save/TTD-new\best_model_run_1.pth
+2025-11-06 10:48:15,454 - INFO - 尝试加载模型: save/TTD-new\best_model_run_1.pth
+2025-11-06 10:48:15,464 - ERROR - 加载模型失败: Error(s) in loading state_dict for GlobalLocalFusionTaskModelGate:
+	Unexpected key(s) in state_dict: "fusion.global_align.weight", "fusion.global_align.bias". 
+	size mismatch for fusion.gate.0.weight: copying a param with shape torch.Size([1, 2048]) from checkpoint, the shape in current model is torch.Size([1, 1280]).
+	size mismatch for fusion.fusion_mlp.0.weight: copying a param with shape torch.Size([256, 1024]) from checkpoint, the shape in current model is torch.Size([256, 1]).
+	size mismatch for nf_lin1.weight: copying a param with shape torch.Size([256, 1]) from checkpoint, the shape in current model is torch.Size([256, 1280]).
+2025-11-06 10:48:15,464 - ERROR - 加载模型失败: Error(s) in loading state_dict for GlobalLocalFusionTaskModelGate:
+	Unexpected key(s) in state_dict: "fusion.global_align.weight", "fusion.global_align.bias". 
+	size mismatch for fusion.gate.0.weight: copying a param with shape torch.Size([1, 2048]) from checkpoint, the shape in current model is torch.Size([1, 1280]).
+	size mismatch for fusion.fusion_mlp.0.weight: copying a param with shape torch.Size([256, 1024]) from checkpoint, the shape in current model is torch.Size([256, 1]).
+	size mismatch for nf_lin1.weight: copying a param with shape torch.Size([256, 1]) from checkpoint, the shape in current model is torch.Size([256, 1280]).
+2025-11-06 10:48:15,464 - INFO - 
+处理数据集: bindingdb
+2025-11-06 10:48:15,464 - INFO - 
+==================================================
+2025-11-06 10:48:15,464 - INFO - 开始评估数据集: bindingdb
+2025-11-06 10:48:15,464 - INFO - ==================================================
+2025-11-06 10:48:15,464 - INFO - 加载数据集...
+2025-11-06 10:48:18,502 - INFO - 数据集加载成功: 1 个样本
+2025-11-06 10:48:18,502 - INFO - 初始化模型...
+2025-11-06 10:48:18,512 - INFO - 验证模型架构一致性...
+2025-11-06 10:48:18,519 - INFO - 检测到子图特征维度: 128
+2025-11-06 10:48:18,520 - INFO - 检测到隐藏层维度: 256
+2025-11-06 10:48:18,520 - INFO - 检测到门控机制，同时使用了全局和局部特征
+2025-11-06 10:48:18,520 - INFO - 所有关键参数与训练时一致。
+2025-11-06 10:48:18,520 - INFO - 加载模型: save/TTD-new\best_model_run_1.pth
+2025-11-06 10:48:18,520 - INFO - 尝试加载模型: save/TTD-new\best_model_run_1.pth
+2025-11-06 10:48:18,528 - ERROR - 加载模型失败: Error(s) in loading state_dict for GlobalLocalFusionTaskModelGate:
+	Unexpected key(s) in state_dict: "fusion.global_align.weight", "fusion.global_align.bias". 
+	size mismatch for fusion.gat_layers.0.lin.weight: copying a param with shape torch.Size([1024, 1280]) from checkpoint, the shape in current model is torch.Size([1024, 1]).
+	size mismatch for fusion.global_pool.att_mlp.0.weight: copying a param with shape torch.Size([256, 1280]) from checkpoint, the shape in current model is torch.Size([256, 1]).
+	size mismatch for fusion.gate.0.weight: copying a param with shape torch.Size([1, 2048]) from checkpoint, the shape in current model is torch.Size([1, 1280]).
+	size mismatch for fusion.fusion_mlp.0.weight: copying a param with shape torch.Size([256, 1024]) from checkpoint, the shape in current model is torch.Size([256, 1]).
+2025-11-06 10:48:18,528 - ERROR - 加载模型失败: Error(s) in loading state_dict for GlobalLocalFusionTaskModelGate:
+	Unexpected key(s) in state_dict: "fusion.global_align.weight", "fusion.global_align.bias". 
+	size mismatch for fusion.gat_layers.0.lin.weight: copying a param with shape torch.Size([1024, 1280]) from checkpoint, the shape in current model is torch.Size([1024, 1]).
+	size mismatch for fusion.global_pool.att_mlp.0.weight: copying a param with shape torch.Size([256, 1280]) from checkpoint, the shape in current model is torch.Size([256, 1]).
+	size mismatch for fusion.gate.0.weight: copying a param with shape torch.Size([1, 2048]) from checkpoint, the shape in current model is torch.Size([1, 1280]).
+	size mismatch for fusion.fusion_mlp.0.weight: copying a param with shape torch.Size([256, 1024]) from checkpoint, the shape in current model is torch.Size([256, 1]).
+2025-11-06 10:48:18,528 - INFO - 
+处理数据集: drugbank1w
+2025-11-06 10:48:18,528 - INFO - 
+==================================================
+2025-11-06 10:48:18,528 - INFO - 开始评估数据集: drugbank1w
+2025-11-06 10:48:18,528 - INFO - ==================================================
+2025-11-06 10:48:18,528 - INFO - 加载数据集...
+2025-11-06 10:48:40,071 - INFO - 数据集加载成功: 1 个样本
+2025-11-06 10:48:40,071 - INFO - 初始化模型...
+2025-11-06 10:48:40,100 - INFO - 验证模型架构一致性...
+2025-11-06 10:48:40,133 - INFO - 检测到子图特征维度: 128
+2025-11-06 10:48:40,133 - INFO - 检测到隐藏层维度: 256
+2025-11-06 10:48:40,133 - INFO - 检测到门控机制，同时使用了全局和局部特征
+2025-11-06 10:48:40,133 - INFO - 所有关键参数与训练时一致。
+2025-11-06 10:48:40,134 - INFO - 加载模型: save/TTD-new\best_model_run_1.pth
+2025-11-06 10:48:40,134 - INFO - 尝试加载模型: save/TTD-new\best_model_run_1.pth
+2025-11-06 10:48:40,159 - ERROR - 加载模型失败: Error(s) in loading state_dict for GlobalLocalFusionTaskModelGate:
+	Unexpected key(s) in state_dict: "fusion.global_align.weight", "fusion.global_align.bias". 
+	size mismatch for fusion.gat_layers.0.lin.weight: copying a param with shape torch.Size([1024, 1280]) from checkpoint, the shape in current model is torch.Size([1024, 768]).
+	size mismatch for fusion.global_pool.att_mlp.0.weight: copying a param with shape torch.Size([256, 1280]) from checkpoint, the shape in current model is torch.Size([256, 768]).
+	size mismatch for fusion.gate.0.weight: copying a param with shape torch.Size([1, 2048]) from checkpoint, the shape in current model is torch.Size([1, 1280]).
+	size mismatch for fusion.fusion_mlp.0.weight: copying a param with shape torch.Size([256, 1024]) from checkpoint, the shape in current model is torch.Size([256, 1]).
+	size mismatch for nf_lin1.weight: copying a param with shape torch.Size([256, 1]) from checkpoint, the shape in current model is torch.Size([256, 768]).
+2025-11-06 10:48:40,159 - ERROR - 加载模型失败: Error(s) in loading state_dict for GlobalLocalFusionTaskModelGate:
+	Unexpected key(s) in state_dict: "fusion.global_align.weight", "fusion.global_align.bias". 
+	size mismatch for fusion.gat_layers.0.lin.weight: copying a param with shape torch.Size([1024, 1280]) from checkpoint, the shape in current model is torch.Size([1024, 768]).
+	size mismatch for fusion.global_pool.att_mlp.0.weight: copying a param with shape torch.Size([256, 1280]) from checkpoint, the shape in current model is torch.Size([256, 768]).
+	size mismatch for fusion.gate.0.weight: copying a param with shape torch.Size([1, 2048]) from checkpoint, the shape in current model is torch.Size([1, 1280]).
+	size mismatch for fusion.fusion_mlp.0.weight: copying a param with shape torch.Size([256, 1024]) from checkpoint, the shape in current model is torch.Size([256, 1]).
+	size mismatch for nf_lin1.weight: copying a param with shape torch.Size([256, 1]) from checkpoint, the shape in current model is torch.Size([256, 768]).
+2025-11-06 10:48:40,159 - INFO - 
+开始绘制组合曲线...
+2025-11-06 10:48:40,159 - ERROR - 没有有效的结果可以绘制
+2025-11-06 10:48:40,160 - ERROR - 没有有效的结果可以保存摘要
+2025-11-06 10:48:40,160 - INFO - 
+评估完成!
+2025-11-06 10:48:40,160 - INFO - 评估摘要已保存至: save/TTD-new\evaluation_summary.txt
+2025-11-06 10:53:48,203 - INFO - 
+==================================================
+2025-11-06 10:53:48,204 - INFO - 开始评估多个数据集并绘制曲线
+2025-11-06 10:53:48,204 - INFO - ==================================================
+2025-11-06 10:53:48,204 - INFO - 
+处理数据集: TTD
+2025-11-06 10:53:48,204 - INFO - 
+==================================================
+2025-11-06 10:53:48,204 - INFO - 开始评估数据集: TTD
+2025-11-06 10:53:48,204 - INFO - ==================================================
+2025-11-06 10:53:48,204 - INFO - 加载数据集...
+2025-11-06 10:53:54,608 - INFO - 数据集加载成功: 1 个样本
+2025-11-06 10:53:54,609 - INFO - 创建与训练时架构一致的模型...
+2025-11-06 10:53:54,609 - INFO - 创建与训练时架构一致的模型...
+2025-11-06 10:53:54,714 - INFO - 从gate层推断输入维度: 2048
+2025-11-06 10:53:54,714 - INFO - 从fusion_mlp推断维度: 1024 -> 256
+2025-11-06 10:53:54,714 - INFO - 从nf_lin1推断维度: 1 -> 256
+2025-11-06 10:57:43,374 - INFO - 
+==================================================
+2025-11-06 10:57:43,374 - INFO - 开始评估多个数据集并绘制曲线
+2025-11-06 10:57:43,374 - INFO - ==================================================
+2025-11-06 10:57:43,375 - INFO - 
+处理数据集: TTD
+2025-11-06 10:57:43,375 - INFO - 
+==================================================
+2025-11-06 10:57:43,375 - INFO - 开始评估数据集: TTD
+2025-11-06 10:57:43,375 - INFO - ==================================================
+2025-11-06 10:57:43,375 - INFO - 加载数据集...
+2025-11-06 10:57:49,968 - INFO - 数据集加载成功: 1 个样本
+2025-11-06 10:57:49,968 - INFO - 创建与训练时架构一致的模型...
+2025-11-06 10:57:49,968 - INFO - 创建与训练时架构一致的模型...
+2025-11-06 10:57:50,092 - INFO - 从gate层推断输入维度: 2048
+2025-11-06 10:57:50,092 - INFO - 从fusion_mlp推断维度: 1024 -> 256
+2025-11-06 10:57:50,092 - INFO - 从nf_lin1推断维度: 1 -> 256
+2025-11-06 10:57:50,155 - INFO - 修复门控层维度: 输入维度=2048
+2025-11-06 10:57:50,156 - INFO - 修复fusion_mlp维度: 1024 -> 256 -> 1
+2025-11-06 10:57:50,156 - INFO - 修复nf_lin1维度: 1 -> 256
+2025-11-06 10:57:50,175 - INFO - 修复global_align维度: 1280 -> 1024
+2025-11-06 10:57:50,175 - INFO - 加载模型: save/TTD-new\best_model_run_1.pth
+2025-11-06 10:57:50,175 - INFO - 尝试加载模型: save/TTD-new\best_model_run_1.pth
+2025-11-06 10:57:50,182 - INFO - 成功匹配 38/38 个参数
+2025-11-06 10:57:50,183 - INFO - 获取测试集预测结果...
+2025-11-06 10:57:50,183 - INFO - 开始获取预测结果...
+2025-11-06 10:57:50,390 - INFO - 从test_model获取的指标: AUC=0.9084, AP=0.9225
+2025-11-06 10:57:50,405 - INFO - 计算ROC曲线...
+2025-11-06 10:57:50,405 - INFO - ROC AUC: 0.9046
+2025-11-06 10:57:50,406 - INFO - 计算PR曲线...
+2025-11-06 10:57:50,406 - INFO - PR AUC: 0.9115
+2025-11-06 10:57:50,406 - INFO - TTD 评估完成 - ROC AUC: 0.9046, PR AUC: 0.9115
+2025-11-06 10:57:50,412 - INFO - 预测结果已保存至: save/TTD-new\TTD_predictions.csv
+2025-11-06 10:57:50,414 - INFO - ROC曲线数据已保存至: save/TTD-new\TTD_roc_curve.csv
+2025-11-06 10:57:50,417 - INFO - PR曲线数据已保存至: save/TTD-new\TTD_pr_curve.csv
+2025-11-06 10:57:50,418 - INFO - 指标摘要已保存至: save/TTD-new\TTD_metrics.json
+2025-11-06 10:57:50,418 - INFO - 
+处理数据集: bindingdb
+2025-11-06 10:57:50,418 - INFO - 
+==================================================
+2025-11-06 10:57:50,418 - INFO - 开始评估数据集: bindingdb
+2025-11-06 10:57:50,418 - INFO - ==================================================
+2025-11-06 10:57:50,418 - INFO - 加载数据集...
+2025-11-06 10:57:53,524 - INFO - 数据集加载成功: 1 个样本
+2025-11-06 10:57:53,524 - INFO - 创建与训练时架构一致的模型...
+2025-11-06 10:57:53,525 - INFO - 创建与训练时架构一致的模型...
+2025-11-06 10:57:53,532 - INFO - 从gate层推断输入维度: 2048
+2025-11-06 10:57:53,532 - INFO - 从fusion_mlp推断维度: 1024 -> 256
+2025-11-06 10:57:53,533 - INFO - 从nf_lin1推断维度: 1 -> 256
+2025-11-06 10:57:53,543 - INFO - 修复门控层维度: 输入维度=2048
+2025-11-06 10:57:53,544 - INFO - 修复fusion_mlp维度: 1024 -> 256 -> 1
+2025-11-06 10:57:53,544 - INFO - 修复nf_lin1维度: 1 -> 256
+2025-11-06 10:57:53,564 - INFO - 修复global_align维度: 1280 -> 1024
+2025-11-06 10:57:53,564 - INFO - 加载模型: save/TTD-new\best_model_run_1.pth
+2025-11-06 10:57:53,564 - INFO - 尝试加载模型: save/TTD-new\best_model_run_1.pth
+2025-11-06 10:57:53,571 - INFO - 成功匹配 36/38 个参数
+2025-11-06 10:57:53,571 - WARNING - 发现 2 个维度不匹配的参数:
+2025-11-06 10:57:53,571 - WARNING -   - fusion.gat_layers.0.lin.weight: 模型=[1024, 1], 检查点=[1024, 1280]
+2025-11-06 10:57:53,572 - WARNING -   - fusion.global_pool.att_mlp.0.weight: 模型=[256, 1], 检查点=[256, 1280]
+2025-11-06 10:57:53,572 - WARNING - 这些参数将使用随机初始化
+2025-11-06 10:57:53,572 - INFO - 获取测试集预测结果...
+2025-11-06 10:57:53,572 - INFO - 开始获取预测结果...
+2025-11-06 10:57:53,648 - INFO - 从test_model获取的指标: AUC=0.8983, AP=0.8718
+2025-11-06 10:57:53,657 - INFO - 计算ROC曲线...
+2025-11-06 10:57:53,658 - INFO - ROC AUC: 0.8972
+2025-11-06 10:57:53,659 - INFO - 计算PR曲线...
+2025-11-06 10:57:53,659 - INFO - PR AUC: 0.8714
+2025-11-06 10:57:53,659 - INFO - bindingdb 评估完成 - ROC AUC: 0.8972, PR AUC: 0.8714
+2025-11-06 10:57:53,663 - INFO - 预测结果已保存至: save/TTD-new\bindingdb_predictions.csv
+2025-11-06 10:57:53,665 - INFO - ROC曲线数据已保存至: save/TTD-new\bindingdb_roc_curve.csv
+2025-11-06 10:57:53,668 - INFO - PR曲线数据已保存至: save/TTD-new\bindingdb_pr_curve.csv
+2025-11-06 10:57:53,668 - INFO - 指标摘要已保存至: save/TTD-new\bindingdb_metrics.json
+2025-11-06 10:57:53,668 - INFO - 
+处理数据集: drugbank1w
+2025-11-06 10:57:53,668 - INFO - 
+==================================================
+2025-11-06 10:57:53,668 - INFO - 开始评估数据集: drugbank1w
+2025-11-06 10:57:53,669 - INFO - ==================================================
+2025-11-06 10:57:53,669 - INFO - 加载数据集...
+2025-11-06 10:58:15,401 - INFO - 数据集加载成功: 1 个样本
+2025-11-06 10:58:15,402 - INFO - 创建与训练时架构一致的模型...
+2025-11-06 10:58:15,402 - INFO - 创建与训练时架构一致的模型...
+2025-11-06 10:58:15,435 - INFO - 从gate层推断输入维度: 2048
+2025-11-06 10:58:15,435 - INFO - 从fusion_mlp推断维度: 1024 -> 256
+2025-11-06 10:58:15,435 - INFO - 从nf_lin1推断维度: 1 -> 256
+2025-11-06 10:58:15,470 - INFO - 修复门控层维度: 输入维度=2048
+2025-11-06 10:58:15,474 - INFO - 修复fusion_mlp维度: 1024 -> 256 -> 1
+2025-11-06 10:58:15,475 - INFO - 修复nf_lin1维度: 1 -> 256
+2025-11-06 10:58:15,550 - INFO - 修复global_align维度: 1280 -> 1024
+2025-11-06 10:58:15,550 - INFO - 加载模型: save/TTD-new\best_model_run_1.pth
+2025-11-06 10:58:15,550 - INFO - 尝试加载模型: save/TTD-new\best_model_run_1.pth
+2025-11-06 10:58:15,583 - INFO - 成功匹配 36/38 个参数
+2025-11-06 10:58:15,583 - WARNING - 发现 2 个维度不匹配的参数:
+2025-11-06 10:58:15,583 - WARNING -   - fusion.gat_layers.0.lin.weight: 模型=[1024, 768], 检查点=[1024, 1280]
+2025-11-06 10:58:15,583 - WARNING -   - fusion.global_pool.att_mlp.0.weight: 模型=[256, 768], 检查点=[256, 1280]
+2025-11-06 10:58:15,583 - WARNING - 这些参数将使用随机初始化
+2025-11-06 10:58:15,584 - INFO - 获取测试集预测结果...
+2025-11-06 10:58:15,584 - INFO - 开始获取预测结果...
+2025-11-06 10:58:15,949 - INFO - 从test_model获取的指标: AUC=0.8670, AP=0.8712
+2025-11-06 10:58:15,966 - INFO - 计算ROC曲线...
+2025-11-06 10:58:15,968 - INFO - ROC AUC: 0.8649
+2025-11-06 10:58:15,968 - INFO - 计算PR曲线...
+2025-11-06 10:58:15,969 - INFO - PR AUC: 0.8787
+2025-11-06 10:58:15,969 - INFO - drugbank1w 评估完成 - ROC AUC: 0.8649, PR AUC: 0.8787
+2025-11-06 10:58:15,974 - INFO - 预测结果已保存至: save/TTD-new\drugbank1w_predictions.csv
+2025-11-06 10:58:15,976 - INFO - ROC曲线数据已保存至: save/TTD-new\drugbank1w_roc_curve.csv
+2025-11-06 10:58:15,979 - INFO - PR曲线数据已保存至: save/TTD-new\drugbank1w_pr_curve.csv
+2025-11-06 10:58:15,980 - INFO - 指标摘要已保存至: save/TTD-new\drugbank1w_metrics.json
+2025-11-06 10:58:15,980 - INFO - 
+开始绘制组合曲线...
+2025-11-06 10:58:16,500 - INFO - 组合ROC和PR曲线已保存至: save/TTD-new\combined_roc_pr_curves.png
+2025-11-06 10:58:16,783 - INFO - 
+各数据集性能指标汇总:
+2025-11-06 10:58:16,783 - INFO - TTD:
+2025-11-06 10:58:16,783 - INFO -   ROC AUC: 0.9046
+2025-11-06 10:58:16,783 - INFO -   PR AUC:  0.9115
+2025-11-06 10:58:16,783 - INFO -   准确率:   0.8131
+2025-11-06 10:58:16,783 - INFO -   精确率:   0.7732
+2025-11-06 10:58:16,784 - INFO -   召回率:   0.8860
+2025-11-06 10:58:16,784 - INFO -   F1分数:   0.8258
+2025-11-06 10:58:16,784 - INFO -   MCC:      0.6329
+2025-11-06 10:58:16,784 - INFO - bindingdb:
+2025-11-06 10:58:16,784 - INFO -   ROC AUC: 0.8972
+2025-11-06 10:58:16,784 - INFO -   PR AUC:  0.8714
+2025-11-06 10:58:16,784 - INFO -   准确率:   0.8428
+2025-11-06 10:58:16,784 - INFO -   精确率:   0.8050
+2025-11-06 10:58:16,784 - INFO -   召回率:   0.9049
+2025-11-06 10:58:16,784 - INFO -   F1分数:   0.8520
+2025-11-06 10:58:16,784 - INFO -   MCC:      0.6910
+2025-11-06 10:58:16,784 - INFO - drugbank1w:
+2025-11-06 10:58:16,784 - INFO -   ROC AUC: 0.8649
+2025-11-06 10:58:16,784 - INFO -   PR AUC:  0.8787
+2025-11-06 10:58:16,784 - INFO -   准确率:   0.7129
+2025-11-06 10:58:16,784 - INFO -   精确率:   0.6575
+2025-11-06 10:58:16,784 - INFO -   召回率:   0.8890
+2025-11-06 10:58:16,784 - INFO -   F1分数:   0.7559
+2025-11-06 10:58:16,784 - INFO -   MCC:      0.4550
+2025-11-06 10:58:16,786 - INFO - 评估摘要已保存至: save/TTD-new\evaluation_summary.csv
+2025-11-06 10:58:16,786 - INFO - 
+评估结果摘要:
+2025-11-06 10:58:16,789 - INFO -    Dataset ROC AUC PR AUC Accuracy Precision Recall F1 Score    MCC
+       TTD  0.9046 0.9115   0.8131    0.7732 0.8860   0.8258 0.6329
+ bindingdb  0.8972 0.8714   0.8428    0.8050 0.9049   0.8520 0.6910
+drugbank1w  0.8649 0.8787   0.7129    0.6575 0.8890   0.7559 0.4550
+2025-11-06 10:58:16,789 - INFO - 
+评估完成!
+2025-11-06 10:58:16,790 - INFO - 评估摘要已保存至: save/TTD-new\evaluation_summary.txt
+2025-11-06 11:03:51,061 - INFO - 
+==================================================
+2025-11-06 11:03:51,062 - INFO - 开始评估多个数据集并绘制曲线
+2025-11-06 11:03:51,062 - INFO - ==================================================
+2025-11-06 11:03:51,062 - INFO - 
+处理数据集: TTD
+2025-11-06 11:03:51,062 - INFO - 
+==================================================
+2025-11-06 11:03:51,062 - INFO - 开始评估数据集: TTD
+2025-11-06 11:03:51,062 - INFO - ==================================================
+2025-11-06 11:03:51,062 - INFO - 加载数据集...
+2025-11-06 11:03:57,953 - INFO - 数据集加载成功: 1 个样本
+2025-11-06 11:03:57,954 - INFO - 加载模型: save/TTD-new\best_model_run_1.pth
+2025-11-06 11:03:57,954 - INFO - 尝试加载模型: save/TTD-new\best_model_run_1.pth
+2025-11-06 11:03:58,099 - INFO - 从nf_lin1推断特征维度: 1
+2025-11-06 11:03:58,099 - INFO - 从gate层推断输入维度: 2048
+2025-11-06 11:03:58,100 - INFO - 从fusion_mlp推断维度: 1024 -> 256
+2025-11-06 11:03:58,100 - INFO - 使用特征维度: 1 创建模型
+2025-11-06 11:03:58,153 - INFO - 修复门控层: 输入维度=2048
+2025-11-06 11:03:58,154 - INFO - 修复fusion_mlp: 1024 -> 256 -> 1
+2025-11-06 11:03:58,159 - INFO - 修复global_align: 1280 -> 1024
+2025-11-06 11:03:58,160 - INFO - 成功匹配 36/38 个参数
+2025-11-06 11:03:58,160 - WARNING - 发现 2 个维度不匹配的参数:
+2025-11-06 11:03:58,160 - WARNING -   - fusion.gat_layers.0.lin.weight: 模型=[1024, 1], 检查点=[1024, 1280]
+2025-11-06 11:03:58,160 - WARNING -   - fusion.global_pool.att_mlp.0.weight: 模型=[256, 1], 检查点=[256, 1280]
+2025-11-06 11:03:58,161 - INFO - 验证模型行为一致性...
+2025-11-06 11:04:07,670 - WARNING - 模型行为验证失败: 'dict' object has no attribute 'to'
+2025-11-06 11:04:07,670 - INFO - 获取测试集预测结果...
+2025-11-06 11:04:07,884 - ERROR - 获取测试结果失败: mat1 and mat2 shapes cannot be multiplied (2273x1280 and 1x1024)
+2025-11-06 11:04:07,899 - INFO - 
+处理数据集: bindingdb
+2025-11-06 11:04:07,899 - INFO - 
+==================================================
+2025-11-06 11:04:07,899 - INFO - 开始评估数据集: bindingdb
+2025-11-06 11:04:07,899 - INFO - ==================================================
+2025-11-06 11:04:07,899 - INFO - 加载数据集...
+2025-11-06 11:04:11,060 - INFO - 数据集加载成功: 1 个样本
+2025-11-06 11:04:11,060 - INFO - 加载模型: save/TTD-new\best_model_run_1.pth
+2025-11-06 11:04:11,061 - INFO - 尝试加载模型: save/TTD-new\best_model_run_1.pth
+2025-11-06 11:04:11,090 - INFO - 从nf_lin1推断特征维度: 1
+2025-11-06 11:04:11,090 - INFO - 从gate层推断输入维度: 2048
+2025-11-06 11:04:11,090 - INFO - 从fusion_mlp推断维度: 1024 -> 256
+2025-11-06 11:04:11,090 - INFO - 使用特征维度: 1 创建模型
+2025-11-06 11:04:11,110 - INFO - 修复门控层: 输入维度=2048
+2025-11-06 11:04:11,113 - INFO - 修复fusion_mlp: 1024 -> 256 -> 1
+2025-11-06 11:04:11,119 - INFO - 修复global_align: 1280 -> 1024
+2025-11-06 11:04:11,119 - INFO - 成功匹配 36/38 个参数
+2025-11-06 11:04:11,119 - WARNING - 发现 2 个维度不匹配的参数:
+2025-11-06 11:04:11,119 - WARNING -   - fusion.gat_layers.0.lin.weight: 模型=[1024, 1], 检查点=[1024, 1280]
+2025-11-06 11:04:11,119 - WARNING -   - fusion.global_pool.att_mlp.0.weight: 模型=[256, 1], 检查点=[256, 1280]
+2025-11-06 11:04:11,120 - INFO - 验证模型行为一致性...
+2025-11-06 11:04:20,524 - WARNING - 模型行为验证失败: 'dict' object has no attribute 'to'
+2025-11-06 11:04:20,524 - INFO - 获取测试集预测结果...
+2025-11-06 11:04:20,916 - INFO - 测试集评估结果: ['AUC:0.8928', 'AP:0.8651', 'acc:0.8376', 'sen:0.9095', 'pre:0.7951', 'spe:0.7657', 'f1:0.8485', 'mcc:0.6823']
+2025-11-06 11:04:20,916 - INFO - 获取预测结果用于绘制曲线...
+2025-11-06 11:04:21,063 - INFO - ROC AUC: 0.8926
+2025-11-06 11:04:21,064 - INFO - PR AUC: 0.8663
+2025-11-06 11:04:21,064 - INFO - bindingdb 评估完成 - ROC AUC: 0.8926, PR AUC: 0.8663
+2025-11-06 11:04:21,068 - INFO - 预测结果已保存至: save/TTD-new\bindingdb_predictions.csv
+2025-11-06 11:04:21,070 - INFO - ROC曲线数据已保存至: save/TTD-new\bindingdb_roc_curve.csv
+2025-11-06 11:04:21,075 - INFO - PR曲线数据已保存至: save/TTD-new\bindingdb_pr_curve.csv
+2025-11-06 11:04:21,075 - INFO - 指标摘要已保存至: save/TTD-new\bindingdb_metrics.json
+2025-11-06 11:04:21,076 - INFO - 
+处理数据集: drugbank1w
+2025-11-06 11:04:21,076 - INFO - 
+==================================================
+2025-11-06 11:04:21,076 - INFO - 开始评估数据集: drugbank1w
+2025-11-06 11:04:21,076 - INFO - ==================================================
+2025-11-06 11:04:21,076 - INFO - 加载数据集...
+2025-11-06 11:04:42,649 - INFO - 数据集加载成功: 1 个样本
+2025-11-06 11:04:42,649 - INFO - 加载模型: save/TTD-new\best_model_run_1.pth
+2025-11-06 11:04:42,649 - INFO - 尝试加载模型: save/TTD-new\best_model_run_1.pth
+2025-11-06 11:04:42,681 - INFO - 从nf_lin1推断特征维度: 1
+2025-11-06 11:04:42,681 - INFO - 从gate层推断输入维度: 2048
+2025-11-06 11:04:42,681 - INFO - 从fusion_mlp推断维度: 1024 -> 256
+2025-11-06 11:04:42,681 - INFO - 使用特征维度: 1 创建模型
+2025-11-06 11:04:42,714 - INFO - 修复门控层: 输入维度=2048
+2025-11-06 11:04:42,716 - INFO - 修复fusion_mlp: 1024 -> 256 -> 1
+2025-11-06 11:04:42,723 - INFO - 修复global_align: 1280 -> 1024
+2025-11-06 11:04:42,723 - INFO - 成功匹配 36/38 个参数
+2025-11-06 11:04:42,723 - WARNING - 发现 2 个维度不匹配的参数:
+2025-11-06 11:04:42,723 - WARNING -   - fusion.gat_layers.0.lin.weight: 模型=[1024, 1], 检查点=[1024, 1280]
+2025-11-06 11:04:42,723 - WARNING -   - fusion.global_pool.att_mlp.0.weight: 模型=[256, 1], 检查点=[256, 1280]
+2025-11-06 11:04:42,724 - INFO - 验证模型行为一致性...
+2025-11-06 11:05:10,485 - WARNING - 模型行为验证失败: 'dict' object has no attribute 'to'
+2025-11-06 11:05:10,485 - INFO - 获取测试集预测结果...
+2025-11-06 11:05:10,495 - ERROR - 获取测试结果失败: mat1 and mat2 shapes cannot be multiplied (4143x768 and 1x1024)
+2025-11-06 11:05:10,513 - INFO - 
+开始绘制组合曲线...
+2025-11-06 11:05:11,117 - INFO - 组合ROC和PR曲线已保存至: save/TTD-new\combined_roc_pr_curves.png
+2025-11-06 11:05:11,377 - INFO - 
+各数据集性能指标汇总:
+2025-11-06 11:05:11,377 - INFO - bindingdb:
+2025-11-06 11:05:11,377 - INFO -   ROC AUC: 0.8926
+2025-11-06 11:05:11,377 - INFO -   PR AUC:  0.8663
+2025-11-06 11:05:11,377 - INFO -   准确率:   0.8376
+2025-11-06 11:05:11,377 - INFO -   精确率:   0.7951
+2025-11-06 11:05:11,377 - INFO -   召回率:   0.9095
+2025-11-06 11:05:11,377 - INFO -   F1分数:   0.8485
+2025-11-06 11:05:11,377 - INFO -   MCC:      0.6823
+2025-11-06 11:05:11,379 - INFO - 评估摘要已保存至: save/TTD-new\evaluation_summary.csv
+2025-11-06 11:05:11,379 - INFO - 
+评估结果摘要:
+2025-11-06 11:05:11,381 - INFO -   Dataset ROC AUC PR AUC Accuracy Precision Recall F1 Score    MCC
+bindingdb  0.8926 0.8663   0.8376    0.7951 0.9095   0.8485 0.6823
+2025-11-06 11:05:11,381 - INFO - 
+评估完成!
+2025-11-06 11:05:11,381 - INFO - 评估摘要已保存至: save/TTD-new\evaluation_summary.txt

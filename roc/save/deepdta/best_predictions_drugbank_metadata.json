@@ -1,0 +1,6 @@
+{
+  "best_auc": 0.9285351984763941,
+  "best_loss": 0.390774056394173,
+  "epoch": 13,
+  "dataset_name": "drugbank"
+}
