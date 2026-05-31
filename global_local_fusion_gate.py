@@ -113,7 +113,7 @@ class GlobalLocalFusionNetGate(nn.Module):
         out = self.fusion_mlp(fusion)
         return out
 
-class GlobalLocalFusionTaskModelGate(nn.Module):
+class HGTT_DTI(nn.Module):
     def __init__(self, args, num_features):
         super().__init__()
         self.use_global = getattr(args, 'use_global', True)

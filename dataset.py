@@ -41,12 +41,12 @@ class MyDataset(Dataset):
 
         # 获取数据集基础路径
         if dataset_name in dataset_paths:
-            base_path = dataset_paths[dataset_name] + '/both'
+            base_path = dataset_paths[dataset_name] + '/seq'
         elif dataset_name.startswith('drugbank') or dataset_name == 'drugbank':
-            base_path = 'dataset/drugbank/both'
+            base_path = 'dataset/drugbank/seq'
             dataset_name = 'drugbank'
         else:
-            base_path = 'dataset/BindingDB/both'
+            base_path = 'dataset/BindingDB/seq'
             print(f"未知数据集 {dataset_name}，使用默认路径 {base_path}")
 
         print(f"正在加载数据集: {args.dataset_name}，路径: {base_path}")

@@ -3,7 +3,7 @@ import os
 import torch
 import argparse
 import numpy as np
-from global_local_fusion_gate import GlobalLocalFusionTaskModelGate
+from global_local_fusion_gate import HGTT_DTI
 from utile import set_seed, get_data, get_loaders, train_func, evaluate_model_on_dataset
 import warnings
 import matplotlib.pyplot as plt
@@ -25,11 +25,6 @@ parser.add_argument('--num_test', type=float, default=0.2, help='ratio of test d
 parser.add_argument('--ratio', type=float, default=1, help='ratio of positive samples and negative samples')
 parser.add_argument('--task', type=str, default='SP', choices=['SD', 'ST', 'SP'])
 
-parser.add_argument('--dm', type=bool, default=True, help="Whether to use diffusion model")
-parser.add_argument('--dm_layers', type=int, default=2, help="The number of layers in the diffusion model")
-parser.add_argument('--dm_heads', type=int, default=4, help="The number of heads in the diffusion model")
-parser.add_argument('--dm_residua', type=bool, default=True, help="Whether to use residua in the diffusion model")
-parser.add_argument('--dm_graph', type=bool, default=True, help="Whether to use graph in the diffusion model")
 
 parser.add_argument('--sf', type=bool, default=True, help="Whether to use subgraph features")
 parser.add_argument('--hops', type=int, default=3, help="k-hop subgraph[1,2,3]")
@@ -41,11 +36,13 @@ parser.add_argument('--train_times', type=int, default=10, help='number of train
 parser.add_argument('--train_epoch', type=int, default=1000, help='number of training epoch')
 parser.add_argument('--batch_size', type=int, default=512, help='batch size of dataset')
 parser.add_argument('--use_global', type=bool, default=True)
-parser.add_argument('--use_local', type=bool, default=False)
+parser.add_argument('--use_local', type=bool, default=True)
 
 # 新增参数：是否保存最佳模型的预测结果用于后续整合
 parser.add_argument('--save_best_predictions', type=bool, default=True,
                     help='Whether to save best model predictions for later integration')
+parser.add_argument('--save_name', type=str, default=None,
+                    help='Custom file name prefix for output CSV and model files (default: dataset name)')
 args = parser.parse_args()
 set_seed(args.seed)
 
@@ -67,8 +64,8 @@ def print_result(result):
 
 save_root = f"save/{args.dataset_name}"
 os.makedirs(save_root, exist_ok=True)
-# file_name = f'{args.dataset_name.upper()}'+'-num_perm-128'+'.csv'
-file_name = f'{args.dataset_name.upper()}.csv'
+save_prefix = args.save_name if args.save_name else args.dataset_name
+file_name = f'{save_prefix.upper()}.csv'
 file_dir = save_root + '/' + file_name
 
 
@@ -115,8 +112,8 @@ def save_best_model(model, filename):
 # 新增：保存最佳模型预测结果的函数
 def save_best_predictions(y_true, y_scores, dataset_name, best_auc, save_root):
     """保存最佳模型的预测结果用于后续整合"""
-    predictions_file = os.path.join(save_root, f'best_predictions_{dataset_name}.npz')
-    metadata_file = os.path.join(save_root, f'best_predictions_{dataset_name}_metadata.json')
+    predictions_file = os.path.join(save_root, f'{save_prefix}_best_predictions_{dataset_name}.npz')
+    metadata_file = os.path.join(save_root, f'{save_prefix}_best_predictions_{dataset_name}_metadata.json')
 
     # 保存预测结果
     np.savez(predictions_file, y_true=y_true, y_scores=y_scores)
@@ -155,9 +152,7 @@ if __name__ == '__main__':
         dataset, splits = get_data(args)
         train_loader, val_loader, test_loader = get_loaders(args, splits)
 
-        # model = Model(args, dataset.num_features).cuda()
-        model = GlobalLocalFusionTaskModelGate(args, dataset.num_features).cuda()
-        # model = SimplifiedImprovedModel(args, dataset.num_features).cuda()
+        model = HGTT_DTI(args, dataset.num_features).cuda()
         optimizer = torch.optim.Adam(params=model.parameters(), lr=0.001, weight_decay=0.0005)
         loss_fn = torch.nn.BCEWithLogitsLoss()
 
@@ -177,7 +172,7 @@ if __name__ == '__main__':
             global_best_predictions = (y_true, y_scores)
 
         # 保存每次训练的最佳模型
-        model_save_path = os.path.join(save_root, f'best_model_run_{c - 1}.pth')
+        model_save_path = os.path.join(save_root, f'{save_prefix}_best_model_run_{c - 1}.pth')
         save_best_model(model, model_save_path)
 
     print_result(all_result)
@@ -189,7 +184,7 @@ if __name__ == '__main__':
     if os.path.exists(best_model_path):
         import shutil
 
-        final_best_path = os.path.join(save_root, 'best_model_overall.pth')
+        final_best_path = os.path.join(save_root, f'{save_prefix}_best_model_overall.pth')
         shutil.copy(best_model_path, final_best_path)
         print(f"整体最佳模型(AUC={best_auc_scores[overall_best_idx]:.4f})已复制到: {final_best_path}")
 

@@ -1,5 +1,5 @@
 {
   "dataset_name": "bindingdB",
-  "best_auc": 0.9843,
-  "num_samples": 1724
+  "best_auc": 0.9724,
+  "num_samples": 3448
 }

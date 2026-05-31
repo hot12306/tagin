@@ -5,15 +5,15 @@ import os
 import sys
 import json
 import torch
-from torch_geometric.transforms import RandomLinkSplit
+import argparse
 
-# 添加项目根目录到路径
 sys.path.append(os.path.dirname(__file__))
 
-from my_model.dataset import MyDataset
+from dataset import MyDataset
+from utile import get_data
 
 
-def extract_complete_predictions(dataset_name='bindingdB', threshold=0.5):
+def extract_complete_predictions(dataset_name_='bindingdB', task_='SP', threshold=0.5):
     """
     提取完整的预测结果，包含：
     1. 药物ID (drug_id)
@@ -23,20 +23,21 @@ def extract_complete_predictions(dataset_name='bindingdB', threshold=0.5):
     5. 预测标签 (predicted_label)
 
     参数:
-        dataset_name: 数据集名称 ('bindingdB', 'drugbank', 'ttd')
+        dataset_name_: 数据集名称 ('bindingdB', 'drugbank', 'ttd')
+        task_: 数据划分方式 ('SP', 'SD', 'ST')
         threshold: 分类阈值，默认0.5
     """
 
     print("=" * 80)
-    print(f"提取 {dataset_name} 数据集的完整预测结果")
+    print(f"提取 {dataset_name_} 数据集的完整预测结果 (task={task_})")
     print("=" * 80)
 
     # ========================
     # 1. 加载预测结果
     # ========================
-    save_dir = f'save/{dataset_name}'
-    predictions_file = os.path.join(save_dir, f'best_predictions_{dataset_name}.npz')
-    metadata_file = os.path.join(save_dir, f'best_predictions_{dataset_name}_metadata.json')
+    save_dir = f'save/{dataset_name_}'
+    predictions_file = os.path.join(save_dir, f'best_predictions_{dataset_name_}.npz')
+    metadata_file = os.path.join(save_dir, f'best_predictions_{dataset_name_}_metadata.json')
 
     if not os.path.exists(predictions_file):
         print(f"❌ 错误: 预测文件不存在 {predictions_file}")
@@ -70,29 +71,27 @@ def extract_complete_predictions(dataset_name='bindingdB', threshold=0.5):
     print(f"\n🔄 加载数据集以获取ID映射...")
 
     class Args:
-        dataset_name = dataset_name
+        dataset_name = dataset_name_
         seed = 2023
-        task = 'SP'
+        task = task_
         num_test = 0.2
         ratio = 1
 
     args = Args()
 
     try:
-        dataset = MyDataset(args)
-        print(f"✅ 数据集加载成功")
+        dataset, splits = get_data(args)
+        test_data = splits['test']
+        print(f"✅ 数据集加载成功 (task={task_})")
 
-        # 获取元数据
         data_metadata = dataset.data.metadata
-        drug_ids = data_metadata['drug_ids']  # 药物ID列表
-        target_ids = data_metadata['target_ids']  # 靶标ID列表
+        drug_ids = data_metadata['drug_ids']
+        target_ids = data_metadata['target_ids']
         num_drugs = data_metadata['num_drugs']
         num_proteins = data_metadata['num_proteins']
 
         print(f"   药物数量: {num_drugs}")
         print(f"   靶标数量: {num_proteins}")
-        print(f"   前5个药物ID: {drug_ids[:5]}")
-        print(f"   前5个靶标ID: {target_ids[:5]}")
 
     except Exception as e:
         print(f"❌ 数据集加载失败: {e}")
@@ -100,45 +99,18 @@ def extract_complete_predictions(dataset_name='bindingdB', threshold=0.5):
         traceback.print_exc()
         return None
 
-    # ========================
-    # 3. 重新生成测试集划分以获取边索引
-    # ========================
-    print(f"\n🔍 重新生成测试集划分以匹配预测结果...")
+    edge_index = test_data['edge_label_index']
+    labels = test_data['edge_label'].numpy()
 
-    try:
-        # 使用与训练时相同的参数进行数据划分
-        transform = RandomLinkSplit(
-            is_undirected=True,
-            num_val=0.1,
-            num_test=0.1,
-            add_negative_train_samples=True,
-            neg_sampling_ratio=1.0,
-            disjoint_train_ratio=0.3
-        )
+    print(f"   测试集边数: {len(labels)}")
+    print(f"   测试集正样本: {sum(labels == 1)}")
+    print(f"   测试集负样本: {sum(labels == 0)}")
 
-        train_data, val_data, test_data = transform(dataset.data)
-
-        # 获取测试集的边索引和标签
-        edge_index = test_data['edge_label_index']  # [2, num_edges]
-        labels = test_data['edge_label'].numpy()  # [num_edges]
-
-        print(f"   测试集边数: {len(labels)}")
-        print(f"   测试集正样本: {sum(labels == 1)}")
-        print(f"   测试集负样本: {sum(labels == 0)}")
-
-        # 验证预测结果数量与测试集边数是否一致
-        if len(y_true) != len(labels):
-            print(f"⚠️  警告: 预测结果数量 ({len(y_true)}) 与测试集边数 ({len(labels)}) 不一致")
-            print(f"   将使用预测结果的实际数量")
-
-    except Exception as e:
-        print(f"❌ 数据划分失败: {e}")
-        import traceback
-        traceback.print_exc()
-        return None
+    if len(y_true) != len(labels):
+        print(f"⚠️  警告: 预测结果数量 ({len(y_true)}) 与测试集边数 ({len(labels)}) 不一致")
 
     # ========================
-    # 4. 转换节点索引为真实ID
+    # 3. 转换节点索引为真实ID
     # ========================
     print(f"\n🔍 正在转换节点索引为真实ID...")
 
@@ -191,7 +163,7 @@ def extract_complete_predictions(dataset_name='bindingdB', threshold=0.5):
     print(f"✅ 成功转换 {len(all_records)} 条边的预测结果")
 
     # ========================
-    # 5. 创建DataFrame并保存
+    # 4. 创建DataFrame并保存
     # ========================
     df = pd.DataFrame(all_records)
 
@@ -217,7 +189,7 @@ def extract_complete_predictions(dataset_name='bindingdB', threshold=0.5):
     print(f"💾 负样本预测: {neg_csv} (共 {len(neg_df)} 条)")
 
     # ========================
-    # 6. 显示统计信息
+    # 5. 显示统计信息
     # ========================
     print("\n" + "=" * 80)
     print("📊 统计信息")
@@ -259,7 +231,7 @@ def extract_complete_predictions(dataset_name='bindingdB', threshold=0.5):
         print(f"   [{bins[i]:.1f} - {bins[i + 1]:.1f}]: {hist[i]} 个样本")
 
     # ========================
-    # 7. 显示示例数据
+    # 6. 显示示例数据
     # ========================
     print("\n" + "=" * 80)
     print("📋 前10个预测结果示例:")
@@ -274,7 +246,18 @@ def extract_complete_predictions(dataset_name='bindingdB', threshold=0.5):
 
 
 if __name__ == '__main__':
-    # 可以选择不同的数据集
-    dataset_name = 'bindingdB'  # 可选: 'bindingdB', 'drugbank', 'ttd'
+    parser = argparse.ArgumentParser(description='提取完整预测结果（含真实ID）')
+    parser.add_argument('--dataset_name', type=str, default='bindingdB',
+                        choices=['bindingdB', 'drugbank', 'ttd'])
+    parser.add_argument('--task', type=str, default='SP',
+                        choices=['SP', 'SD', 'ST'],
+                        help='数据划分方式: SP=随机, SD=药物冷启动, ST=靶标冷启动')
+    parser.add_argument('--threshold', type=float, default=0.5,
+                        help='分类阈值')
+    args_extract = parser.parse_args()
 
-    df = extract_complete_predictions(dataset_name, threshold=0.5)
+    df = extract_complete_predictions(
+        dataset_name_=args_extract.dataset_name,
+        task_=args_extract.task,
+        threshold=args_extract.threshold
+    )

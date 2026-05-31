@@ -48,8 +48,8 @@ def get_data(args):
         is_undirected=True,
         num_val=0.1,
         num_test=0.1,
-        add_negative_train_samples=True,  # 开启自动负采样
-        neg_sampling_ratio=1.0,
+        add_negative_train_samples=True,
+        neg_sampling_ratio=float(args.ratio),
         disjoint_train_ratio=0.3
     )
 
@@ -227,9 +227,9 @@ def train_func(args, train_loader, val_loader, test_loader, model, optimizer, lo
         accuracy, sensitivity, precision, specificity, F1_score, mcc = calculate_metrics(y_true, temp.numpy())
 
         result = ['AUC:{:.4f}'.format(AUC), 'AP:{:.4f}'.format(AP),
-                  'acc:{:.4f}'.format(accuracy.item()), 'sen:{:.4f}'.format(sensitivity.item()),
-                  'pre:{:.4f}'.format(precision.item()), 'spe:{:.4f}'.format(specificity.item()),
-                  'f1:{:.4f}'.format(F1_score.item()), 'mcc:{:.4f}'.format(mcc.item())]
+                  'acc:{:.4f}'.format(accuracy), 'sen:{:.4f}'.format(sensitivity),
+                  'pre:{:.4f}'.format(precision), 'spe:{:.4f}'.format(specificity),
+                  'f1:{:.4f}'.format(F1_score), 'mcc:{:.4f}'.format(mcc)]
 
         print(result)
 
