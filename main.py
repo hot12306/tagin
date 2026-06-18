@@ -19,11 +19,11 @@ print("当前GPU设备:", torch.cuda.get_device_name(0))  # 应显示显卡型�
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--seed', type=int, default=2023, help="random seed of dataset and model")
-parser.add_argument('--dataset_name', type=str, default='ttd',
+parser.add_argument('--dataset_name', type=str, default='bindingdB',
                     choices=['bindingdB', 'ttd', 'drugbank'])
 parser.add_argument('--num_test', type=float, default=0.2, help='ratio of test datasets')
 parser.add_argument('--ratio', type=float, default=1, help='ratio of positive samples and negative samples')
-parser.add_argument('--task', type=str, default='SP', choices=['SD', 'ST', 'SP'])
+parser.add_argument('--task', type=str, default='SD', choices=['SD', 'ST', 'SP'])
 
 
 parser.add_argument('--sf', type=bool, default=True, help="Whether to use subgraph features")
@@ -41,7 +41,7 @@ parser.add_argument('--use_local', type=bool, default=True)
 # 新增参数：是否保存最佳模型的预测结果用于后续整合
 parser.add_argument('--save_best_predictions', type=bool, default=True,
                     help='Whether to save best model predictions for later integration')
-parser.add_argument('--save_name', type=str, default=None,
+parser.add_argument('--save_name', type=str, default="unsenn_drug",
                     help='Custom file name prefix for output CSV and model files (default: dataset name)')
 args = parser.parse_args()
 set_seed(args.seed)
