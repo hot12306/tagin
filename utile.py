@@ -75,6 +75,19 @@ def get_data(args):
                 edge_label = edge_label[:index_to_remove] + edge_label[index_to_remove + 1:]
         train_data['edge_label_index'] = torch.LongTensor(edge_label_index)
         train_data['edge_label'] = torch.Tensor(edge_label)
+
+        # 添加过滤前检查
+        original_train_edges = len(train_data.edge_label)
+        test_drug_set = set(test_data['edge_label_index'][1].tolist())
+
+        # 使用集合运算加速过滤
+        overlap_drugs = set(train_drug_list) & test_drug_set
+        mask = torch.tensor([drug not in overlap_drugs for drug in train_drug_list])
+
+        train_data.edge_label_index = train_data.edge_label_index[:, mask]
+        train_data.edge_label = train_data.edge_label[mask]
+
+        print(f"过滤后保留训练边: {len(train_data.edge_label)}/{original_train_edges}")
     elif args.task == 'ST':
         print('ST')
         test_target_set = set(test_data['edge_label_index'][0].tolist())
